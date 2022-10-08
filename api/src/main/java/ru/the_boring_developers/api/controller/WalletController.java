@@ -21,12 +21,12 @@ public class WalletController {
     private final BalanceService balanceService;
 
     @GetMapping("/nft")
-    public ResponseEntity<List<Nft>> balanceNft(@RequestHeader Long userId) {
+    public ResponseEntity<List<Nft>> balanceNft(@RequestParam Long userId) {
         return ok(balanceService.balanceNft(userId));
     }
 
     @GetMapping("/coin")
-    public ResponseEntity<CoinBalanceResponse> balanceCoin(@RequestHeader Long userId) {
+    public ResponseEntity<CoinBalanceResponse> balanceCoin(@RequestParam Long userId) {
         return ok(balanceService.balanceCoin(userId));
     }
 }

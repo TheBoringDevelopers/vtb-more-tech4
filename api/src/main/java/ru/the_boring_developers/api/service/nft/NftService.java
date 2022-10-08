@@ -10,4 +10,5 @@ import java.util.List;
 public interface NftService {
     List<Nft> findAll(String type);
     TransferResponse buy(NftBuyRequest request);
+    Nft find(String uri);
 }

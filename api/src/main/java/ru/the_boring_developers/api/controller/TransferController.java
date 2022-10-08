@@ -21,21 +21,21 @@ public class TransferController {
     private final TransferService transferService;
 
     @PostMapping("/ruble")
-    public ResponseEntity<TransferResponse> transferRuble(@RequestHeader Long userId,
+    public ResponseEntity<TransferResponse> transferRuble(@RequestParam Long userId,
                                                           @RequestParam Long toUserId,
                                                           @RequestParam BigDecimal amount) {
         return ok(transferService.transfer(Currency.RUBLE, userId, toUserId, amount));
     }
 
     @PostMapping("/matic")
-    public ResponseEntity<TransferResponse> transferMatic(@RequestHeader Long userId,
+    public ResponseEntity<TransferResponse> transferMatic(@RequestParam Long userId,
                                                           @RequestParam Long toUserId,
                                                           @RequestParam BigDecimal amount) {
         return ok(transferService.transfer(Currency.MATIC, userId, toUserId, amount));
     }
 
     @PostMapping("/nft")
-    public ResponseEntity<TransferResponse> transferNft(@RequestHeader Long userId,
+    public ResponseEntity<TransferResponse> transferNft(@RequestParam Long userId,
                                                         @RequestParam Long toUserId,
                                                         @RequestParam Long tokenId) {
         return ok(transferService.transfer(Currency.NFT, userId, toUserId, BigDecimal.valueOf(tokenId)));

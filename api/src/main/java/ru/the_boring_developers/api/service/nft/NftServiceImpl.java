@@ -50,6 +50,11 @@ public class NftServiceImpl implements NftService {
         return nftTransferResponse;
     }
 
+    @Override
+    public Nft find(String uri) {
+        return nftRepository.find(uri);
+    }
+
     private void validate(Currency currency, Nft nft, CoinBalanceResponse balance) {
         if (currency == Currency.RUBLE) {
             if (nft.getRublePrice() == null) {
