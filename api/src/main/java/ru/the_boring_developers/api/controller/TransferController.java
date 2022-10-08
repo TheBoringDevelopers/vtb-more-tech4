@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.the_boring_developers.api.service.nft.transfer.TransferService;
-import ru.the_boring_developers.common.entity.transaction.TransactionType;
+import ru.the_boring_developers.common.entity.nft.Currency;
 import ru.the_boring_developers.common.entity.vtb_api.transfer.TransferResponse;
 
 import java.math.BigDecimal;
@@ -24,20 +24,20 @@ public class TransferController {
     public ResponseEntity<TransferResponse> transferRuble(@RequestHeader Long userId,
                                                           @RequestParam Long toUserId,
                                                           @RequestParam BigDecimal amount) {
-        return ok(transferService.transfer(TransactionType.RUBLE, userId, toUserId, amount));
+        return ok(transferService.transfer(Currency.RUBLE, userId, toUserId, amount));
     }
 
     @PostMapping("/matic")
     public ResponseEntity<TransferResponse> transferMatic(@RequestHeader Long userId,
                                                           @RequestParam Long toUserId,
                                                           @RequestParam BigDecimal amount) {
-        return ok(transferService.transfer(TransactionType.MATIC, userId, toUserId, amount));
+        return ok(transferService.transfer(Currency.MATIC, userId, toUserId, amount));
     }
 
     @PostMapping("/nft")
     public ResponseEntity<TransferResponse> transferNft(@RequestHeader Long userId,
                                                         @RequestParam Long toUserId,
                                                         @RequestParam Long tokenId) {
-        return ok(transferService.transfer(TransactionType.NFT, userId, toUserId, BigDecimal.valueOf(tokenId)));
+        return ok(transferService.transfer(Currency.NFT, userId, toUserId, BigDecimal.valueOf(tokenId)));
     }
 }

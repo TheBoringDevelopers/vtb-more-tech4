@@ -159,5 +159,350 @@
             </column>
         </createTable>
     </changeSet>
+    
+    <changeSet id="add_type_and_ruble_price_to_nft" author="burmistrov_d">
+        <addColumn tableName="nft">
+            <column name="type" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ruble_price" type="numeric">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+        <dropNotNullConstraint tableName="nft" columnName="matic_price" />
+    </changeSet>
+
+    <changeSet id="add_nfts" author="burmistrov_d">
+        <!-- USUAL -->
+        <insert tableName="nft">
+            <column name="uri"         value="8vptuqLDKFyKL3uBm1URekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар1"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664528015629_4ctvcay5wj4fm93d2c00qz6n27c0utju_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="j5Oy48e9ITm1stKP1G28ekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар2"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664536978330_6kypggrry9psujakso9ruyu975fprmhe_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="WAuxqMideyZkTwZvsQ3XekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар3"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664695276526_vpoein5f108z6sh9t7y6ykighezwhf1p_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="Hg6hLXPPO2MlrQMdY6fMekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар4"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664697062014_6y1q4fu0pgxbl2ssji9mtj869k2hkfto_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="fqxAbbZGgyw7pl3LDqygekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар5"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664697375894_60mvboj9qmdg0naukxaxt3fq11s7lvtn_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="ihrCyUnKgxkGLP7naE8nekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар6"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664697382604_qc545pci8z1uir59zw22ul11he0es7rv_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="h4lFLoWvdapiR9NZUWCjekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар7"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664707837635_ziavb99zeq64qzvc76q6xmby1icxod7d_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="SvYvnfFRBJro3m5A2p2NekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар8"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664709709047_58uiqk1830rq4pnf7pt4zj097afvxd53_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="E1byfOGt8cmxebBL7BifekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар9"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664711603790_jbg9tbj25cso60c5w5n93yi1d2m4wol9_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="KjXhgdzmp1w3TiL4NVXrekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар10"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664723013910_1vjigh23t5x2lbc2hiuignsls6utiqh8_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="XFiXlUhcjpKCNMubVAdFekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар11"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664731060617_xp12lh0kjxsay3qmm2fwih10bzzyan92_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="dMs1U4jjjifDghRTXzKbekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар12"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664740400450_mad1xswhpbhdvfhfx398q9ypuagxy1ee_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="4FGR6b3zbleiXGh8rRLOekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар13"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664751811610_h95xozxsg04uqf3u3who4bvvi2d27whv_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="Ld9uGJ0KA5azuVL3AgG1ekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар14"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664761224532_sdw399quucb17s7vwuullf8flmioiywg_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="FFMWaMMtColFHOaV0DuqekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар15"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664777523415_k4rsj8p109r0ysltjcbhywjbf7ji3ilx_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="Q5EFfp5gtM07qdA7QrwnekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар16"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1664796222516_vphcmqflhbveaxlst76eg3buhatbyeka_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="ekiWl82LrAlHWArWJQs9"/>
+            <column name="name"        value="аватар17"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/1665127022543_0t7grmlm8yw92f3ic87wrrvxq0g0bdc6_400x400.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <!-- CLOTHES -->
+
+        <insert tableName="nft">
+            <column name="uri"         value="QL5EBV4n84XZAKrzv8gD"/>
+            <column name="name"        value="одежда1"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/01_0000_1080x.png"/>
+            <column name="type"        value="USUAL"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="QkDVHds5ONwKHErepxYF"/>
+            <column name="name"        value="одежда2"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/Nilmance_LateStudio_v18_Pressure_new_Custom_View_1_1080x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="qm5PkIuEHhv1tLT9m0qh"/>
+            <column name="name"        value="одежда3"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/t-shirt_4_Custom_View_17_540x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="T80L5Vciaxq95QX6GBMl"/>
+            <column name="name"        value="одежда4"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/GJ2A4591_Naw_3_1_copy_900x.jpg"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="wGfZlVwBglqDBSywlZzq"/>
+            <column name="name"        value="одежда5"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/Copyofnight_front_72870f90-bdf3-4c63-aff2-c706753ca314_1080x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="4NjQkzSKCA12TF3g0G1m"/>
+            <column name="name"        value="одежда6"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/L_Officiel_dress_03_Custom_View_1_1080x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="V3ywvFwjEMDfTIBJXo7g"/>
+            <column name="name"        value="одежда7"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/5_front_540x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="PXJy2Ju8DGpQuSdwy6Ah"/>
+            <column name="name"        value="одежда8"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/04_front_new_1080x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="a2WOxhr5wH1bhjS6m8Uz"/>
+            <column name="name"        value="одежда9"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/BucketHat-CompositionwithRed_BlueandYellow_Custom_View_2_1_540x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="d5QW7gih2CBOWcdej8g0"/>
+            <column name="name"        value="одежда10"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/Smileyshirt_1__19_720x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="GpT4btYY20SDbiQbjB0a"/>
+            <column name="name"        value="одежда11"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/T-shirtpink_Custom_View_3_1_720x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="BT7UF2Xa3xNClRG7xpRW"/>
+            <column name="name"        value="одежда12"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/LoomLoop_with_assets3_PollyHO__Custom_View_1_1080x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="7oJe8NDf38vLu9lO58MN"/>
+            <column name="name"        value="одежда13"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/Christian_Item01_050822_Custom_View_1_1_1080x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="DY75QphqMi7TlGK90oKZ"/>
+            <column name="name"        value="одежда14"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/Celine_Item01_1_1__Custom_View_3_1080x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="0sr9datVhMwzRVb305T5"/>
+            <column name="name"        value="одежда15"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/H2_Item_1_0725__new_Custom_View_1_1080x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="j73LXBtZqvogPRTRZuua"/>
+            <column name="name"        value="одежда16"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/Dress-TrafalgarSquare_Custom_View_2_540x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="f9F1k5I0puGtjgDG2KF0"/>
+            <column name="name"        value="одежда17"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/14_0052_1080x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="Y8rFjUuVBwilD9yCA4bP"/>
+            <column name="name"        value="одежда18"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/item4_V3_0802_Custom_View_1_1080x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+
+        <insert tableName="nft">
+            <column name="uri"         value="N9CY4jMz6Nf7rZ9CteIH"/>
+            <column name="name"        value="одежда19"/>
+            <column name="matic_price" value="0.45"/>
+            <column name="ruble_price" value="100"/>
+            <column name="image_url"   value="https://wegoapp.ru/static/YMDHC_V92_Custom_View_1_1080x.png"/>
+            <column name="type"        value="CLOTHES"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="drop_not_null_transaction" author="burmistrov_d">
+        <dropNotNullConstraint tableName="transaction" columnName="user_info_id_from" />
+    </changeSet>
 
 </databaseChangeLog>

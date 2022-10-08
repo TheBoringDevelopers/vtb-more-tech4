@@ -19,7 +19,9 @@ public class NftResultSetExtractorImpl implements NftResultSetExtractor {
         nft.setUri(rs.getString("uri"));
         nft.setName(rs.getString("name"));
         nft.setMaticPrice(rs.getBigDecimal("matic_price"));
+        nft.setRublePrice(rs.getBigDecimal("ruble_price"));
         nft.setImageUrl(rs.getString("image_url"));
+        nft.setType(rs.getString("type"));
         return nft;
     }
 }

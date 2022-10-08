@@ -2,8 +2,8 @@ package ru.the_boring_developers.api.service.nft.transaction;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.the_boring_developers.common.entity.nft.Currency;
 import ru.the_boring_developers.common.entity.transaction.Transaction;
-import ru.the_boring_developers.common.entity.transaction.TransactionType;
 import ru.the_boring_developers.common.entity.vtb_api.transfer.TransferResponse;
 import ru.the_boring_developers.common.repository.transaction.TransactionRepository;
 
@@ -23,7 +23,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Long create(TransactionType transactionType, BigDecimal value, Long userIdFrom, Long userIdTo, TransferResponse transferResponse) {
+    public Long create(Currency currency, String value, Long userIdFrom, Long userIdTo, TransferResponse transferResponse) {
         if (transferResponse.getTransactionHash() == null) {
             return null;
         }
@@ -32,8 +32,8 @@ public class TransactionServiceImpl implements TransactionService {
                 .userIdFrom(userIdFrom)
                 .userIdTo(userIdTo)
                 .status("Pending")
-                .type(transactionType.name())
-                .amount(String.valueOf(value))
+                .type(currency.name())
+                .amount(value)
                 .build());
         transactionTaskService.addTransaction(id, transferResponse.getTransactionHash());
         return id;

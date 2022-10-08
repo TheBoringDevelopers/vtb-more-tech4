@@ -14,6 +14,7 @@ import ru.the_boring_developers.common.entity.vtb_api.balance.nft.NftBalanceResp
 import ru.the_boring_developers.common.entity.vtb_api.transaction.TransactionStatusResponse;
 import ru.the_boring_developers.common.entity.vtb_api.transfer.TransferRequest;
 import ru.the_boring_developers.common.entity.vtb_api.transfer.TransferResponse;
+import ru.the_boring_developers.common.entity.vtb_api.transfer.nft.NftGenerateRequest;
 import ru.the_boring_developers.common.entity.vtb_api.transfer.nft.NftTransferRequest;
 import ru.the_boring_developers.common.entity.vtb_api.wallet.CreateWalletResponse;
 import ru.the_boring_developers.common.exception.DomainException;
@@ -122,6 +123,21 @@ public class VtbRestTemplate {
             );
         } catch (RestClientException e) {
             log.error("Ошибка проверки статуса: " + e.getMessage());
+            throw new DomainException("Ошибка запроса");
+        }
+    }
+
+    public TransferResponse generateNft(String toPublicKey, String uri) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            return restTemplate.postForObject(
+                    vtbProperties.getBaseUrl() + "/v1/nft/generate",
+                    new HttpEntity<>(new NftGenerateRequest(toPublicKey, uri, 1L), headers),
+                    TransferResponse.class
+            );
+        } catch (RestClientException e) {
+            log.error("Ошибка генерации: " + e.getMessage());
             throw new DomainException("Ошибка запроса");
         }
     }

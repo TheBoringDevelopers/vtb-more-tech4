@@ -4,8 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.the_boring_developers.api.rest.vtb.VtbRestTemplate;
 import ru.the_boring_developers.api.service.nft.transaction.TransactionService;
-import ru.the_boring_developers.common.entity.transaction.Transaction;
-import ru.the_boring_developers.common.entity.transaction.TransactionType;
+import ru.the_boring_developers.common.entity.nft.Currency;
 import ru.the_boring_developers.common.entity.vtb_api.transfer.TransferRequest;
 import ru.the_boring_developers.common.entity.vtb_api.transfer.TransferResponse;
 import ru.the_boring_developers.common.repository.wallet.WalletRepository;
@@ -22,23 +21,23 @@ public class TransferServiceImpl implements TransferService {
     private final WalletRepository walletRepository;
     private final TransactionService transactionService;
 
-    private final Map<TransactionType, Function<TransferRequest, TransferResponse>> functions = Map.of(
-            TransactionType.MATIC, this::transferMatic,
-            TransactionType.RUBLE, this::transferRuble,
-            TransactionType.NFT, this::transferNft);
+    private final Map<Currency, Function<TransferRequest, TransferResponse>> functions = Map.of(
+            Currency.MATIC, this::transferMatic,
+            Currency.RUBLE, this::transferRuble,
+            Currency.NFT, this::transferNft);
 
     @Override
-    public TransferResponse transfer(TransactionType transactionType, Long userInfoId, Long toUserInfoId, BigDecimal amount) {
+    public TransferResponse transfer(Currency currency, Long userInfoId, Long toUserInfoId, BigDecimal amount) {
         TransferResponse response =
-                functions.get(transactionType)
+                functions.get(currency)
                         .apply(
                                 TransferRequest.builder()
-                                        .fromPrivateKey(walletRepository.find(userInfoId).getPrivateKey())
+                                        .fromPrivateKey(userInfoId == null ? walletRepository.findMain().getPrivateKey() : walletRepository.find(userInfoId).getPrivateKey())
                                         .toPublicKey(walletRepository.find(toUserInfoId).getPublicKey())
                                         .amount(amount)
                                         .build()
                         );
-        transactionService.create(transactionType, amount, userInfoId, toUserInfoId, response);
+        transactionService.create(currency, amount.toString(), userInfoId, toUserInfoId, response);
         return response;
     }
 

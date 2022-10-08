@@ -12,12 +12,8 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Nft {
+public class NftBuyRequest {
     private String uri;
-    private String name;
-    private String imageUrl;
-    private BigDecimal maticPrice;
-    private BigDecimal rublePrice;
-    private String type;
-    private List<Long> tokens;
+    private Long userId;
+    private Currency currency;
 }
