@@ -1,0 +1,139 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+
+    <changeSet id="create_user_info" author="burmistrov_d">
+        <!-- USER_INFO -->
+        <createTable tableName="user_info">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="user_info_pkey"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(350)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(128)"/>
+            <column name="first_name" type="VARCHAR(128)"/>
+            <column name="last_name" type="VARCHAR(128)"/>
+            <column name="patronymic" type="VARCHAR(128)"/>
+            <column name="email" type="VARCHAR(128)"/>
+            <column name="age" type="BIGINT"/>
+            <column name="city" type="VARCHAR(128)"/>
+            <column name="description" type="VARCHAR(2048)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_wallet" author="burmistrov_d">
+        <!-- WALLET -->
+        <createTable tableName="wallet">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="wallet_pkey"/>
+            </column>
+            <column name="public_key" type="VARCHAR(350)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="private_key" type="VARCHAR(350)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="user_info_id" type="BIGINT">
+                <constraints nullable="true"
+                             foreignKeyName="wallet_user_id_fkey"
+                             referencedTableName="user_info"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add_main_wallet" author="bursmitrov_d">
+        <insert tableName="wallet">
+            <column name="public_key" value="0x1C8F357Ac654d1ce8e3C601D24c09dF977EA343B"/>
+            <column name="private_key" value="7afbe4f5b31362a7e476aed87a63a55f29e0e155a249fa4ece5c2e03fe824e9e"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="create_challenge" author="burmistrov_d">
+        <!-- CHALLENGE -->
+        <createTable tableName="challenge">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="challenge_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(350)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(350)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="VARCHAR(2048)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="done_counter" type="boolean">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="transaction" author="burmistrov_d">
+        <!-- TRANSACTION -->
+        <createTable tableName="transaction">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="transaction_pkey"/>
+            </column>
+            <column name="user_info_id_from" type="VARCHAR(350)">
+                <constraints nullable="true"
+                             foreignKeyName="wallet_user_id_fkey"
+                             referencedTableName="user_info"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="user_info_id_to" type="VARCHAR(350)">
+                <constraints nullable="true"
+                             foreignKeyName="wallet_user_id_fkey"
+                             referencedTableName="user_info"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="external_id" type="VARCHAR(2048)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add_test_info" author="bursmitrov_d">
+        <insert tableName="user_info">
+            <column name="phone_number" value="79999999999"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Иванов"/>
+            <column name="patronymic" value="Иванович"/>
+            <column name="email" value="ivan@gmail.com"/>
+            <column name="age" value="33"/>
+            <column name="city" value="Москва"/>
+            <column name="description" value="Описание Ивана"/>
+        </insert>
+        <insert tableName="user_info">
+            <column name="phone_number" value="79999999998"/>
+            <column name="first_name" value="Пётр"/>
+            <column name="last_name" value="Петров"/>
+            <column name="patronymic" value="Петрович"/>
+            <column name="email" value="petr@gmail.com"/>
+            <column name="age" value="32"/>
+            <column name="city" value="Москва"/>
+            <column name="description" value="Описание Пётра"/>
+        </insert>
+        <insert tableName="wallet">
+            <column name="public_key" value="0x6B6BE5f535e06475661A61d1605f9A70E2674E43"/>
+            <column name="private_key" value="b7265f07a0f80ca7efc80701f4f6d2d1ab29bf191499ac04472be9509f4281c0"/>
+            <column name="user_info_id" value="1"/>
+        </insert>
+        <insert tableName="wallet">
+            <column name="public_key" value="0x52B7E2530af6728Ad46c996C46e6172b742a4A06"/>
+            <column name="private_key" value="843aa1d4913ca19739f39df417e7eed38dbf80537c67d6c745f8b3bc90d2db51"/>
+            <column name="user_info_id" value="2"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
