@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import ru.the_boring_developers.common.entity.nft.Nft;
 import ru.the_boring_developers.common.entity.transaction.Transaction;
 import ru.the_boring_developers.common.repository.transaction.TransactionResultSetExtractor;
+import ru.the_boring_developers.common.utils.DbUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ public class NftResultSetExtractorImpl implements NftResultSetExtractor {
         nft.setUri(rs.getString("uri"));
         nft.setName(rs.getString("name"));
         nft.setMaticPrice(rs.getBigDecimal("matic_price"));
-        nft.setRublePrice(rs.getBigDecimal("ruble_price"));
+        nft.setRublePrice(DbUtils.getDouble(rs, "ruble_price"));
         nft.setImageUrl(rs.getString("image_url"));
         nft.setType(rs.getString("type"));
         return nft;

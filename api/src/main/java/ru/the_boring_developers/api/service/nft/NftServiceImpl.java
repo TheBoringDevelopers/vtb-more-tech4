@@ -40,7 +40,7 @@ public class NftServiceImpl implements NftService {
         CoinBalanceResponse coinBalanceResponse = balanceService.balanceCoin(request.getUserId());
         validate(request.getCurrency(), nft, coinBalanceResponse);
         Wallet mainWallet = walletRepository.findMain();
-        BigDecimal amount = Currency.RUBLE == request.getCurrency() ? nft.getRublePrice() : nft.getMaticPrice();
+        BigDecimal amount = Currency.RUBLE == request.getCurrency() ? BigDecimal.valueOf(nft.getRublePrice()) : nft.getMaticPrice();
         TransferResponse nftTransferResponse = vtbRestTemplate.generateNft(userWallet.getPublicKey(), nft.getUri());
         TransferResponse rubleTransferResponse = vtbRestTemplate.transferRuble(userWallet.getPrivateKey(), mainWallet.getPublicKey(), amount);
         transactionService.create(request.getCurrency(), nft.getUri(),
@@ -55,7 +55,7 @@ public class NftServiceImpl implements NftService {
             if (nft.getRublePrice() == null) {
                 throw new DomainException("Невозможно купить за рубли");
             }
-            if (nft.getRublePrice().compareTo(balance.getCoinsAmount()) < 0) {
+            if (BigDecimal.valueOf(nft.getRublePrice()).compareTo(balance.getCoinsAmount()) < 0) {
                 throw new DomainException("Недостаточно средств");
             }
         }

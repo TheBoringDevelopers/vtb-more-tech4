@@ -17,7 +17,7 @@ public class Nft {
     private String name;
     private String imageUrl;
     private BigDecimal maticPrice;
-    private BigDecimal rublePrice;
+    private Double rublePrice;
     private String type;
     private List<Long> tokens;
 }
