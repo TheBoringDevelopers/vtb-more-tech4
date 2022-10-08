@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.the_boring_developers.api.service.user.NftService;
+import ru.the_boring_developers.api.service.nft.balance.BalanceService;
+import ru.the_boring_developers.common.entity.nft.Nft;
 import ru.the_boring_developers.common.entity.vtb_api.balance.coin.CoinBalanceResponse;
 import ru.the_boring_developers.common.entity.vtb_api.balance.nft.NftBalanceResponse;
+
+import java.util.List;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -16,15 +19,15 @@ import static org.springframework.http.ResponseEntity.ok;
 @AllArgsConstructor
 public class WalletController {
 
-    private final NftService nftService;
+    private final BalanceService balanceService;
 
     @GetMapping("/nft")
-    public ResponseEntity<NftBalanceResponse> balanceNft(@RequestHeader Long userId) {
-        return ok(nftService.balanceNft(userId));
+    public ResponseEntity<List<Nft>> balanceNft(@RequestHeader Long userId) {
+        return ok(balanceService.balanceNft(userId));
     }
 
     @GetMapping("/coin")
     public ResponseEntity<CoinBalanceResponse> balanceCoin(@RequestHeader Long userId) {
-        return ok(nftService.balanceCoin(userId));
+        return ok(balanceService.balanceCoin(userId));
     }
 }

@@ -15,4 +15,6 @@ public class Transaction {
     private Long userIdTo;
     private String externalId;
     private String status;
+    private String type;
+    private String amount;
 }

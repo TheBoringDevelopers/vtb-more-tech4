@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import ru.the_boring_developers.api.rest.vtb.properties.VtbProperties;
 import ru.the_boring_developers.common.entity.vtb_api.balance.coin.CoinBalanceResponse;
 import ru.the_boring_developers.common.entity.vtb_api.balance.nft.NftBalanceResponse;
+import ru.the_boring_developers.common.entity.vtb_api.transaction.TransactionStatusResponse;
 import ru.the_boring_developers.common.entity.vtb_api.transfer.TransferRequest;
 import ru.the_boring_developers.common.entity.vtb_api.transfer.TransferResponse;
 import ru.the_boring_developers.common.entity.vtb_api.transfer.nft.NftTransferRequest;
@@ -109,6 +110,18 @@ public class VtbRestTemplate {
             );
         } catch (RestClientException e) {
             log.error("Ошибка баланса токенов: " + e.getMessage());
+            throw new DomainException("Ошибка запроса");
+        }
+    }
+
+    public TransactionStatusResponse getTransactionStatus(String hash) {
+        try {
+            return restTemplate.getForObject(
+                    String.format(vtbProperties.getBaseUrl() + "/v1/transfers/status/%s", hash),
+                    TransactionStatusResponse.class
+            );
+        } catch (RestClientException e) {
+            log.error("Ошибка проверки статуса: " + e.getMessage());
             throw new DomainException("Ошибка запроса");
         }
     }

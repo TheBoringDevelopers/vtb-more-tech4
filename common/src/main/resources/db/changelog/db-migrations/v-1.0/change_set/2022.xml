@@ -76,33 +76,6 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="transaction" author="burmistrov_d">
-        <!-- TRANSACTION -->
-        <createTable tableName="transaction">
-            <column autoIncrement="true" name="id" type="BIGSERIAL">
-                <constraints primaryKey="true" primaryKeyName="transaction_pkey"/>
-            </column>
-            <column name="user_info_id_from" type="VARCHAR(350)">
-                <constraints nullable="true"
-                             foreignKeyName="wallet_user_id_fkey"
-                             referencedTableName="user_info"
-                             referencedColumnNames="id"/>
-            </column>
-            <column name="user_info_id_to" type="VARCHAR(350)">
-                <constraints nullable="true"
-                             foreignKeyName="wallet_user_id_fkey"
-                             referencedTableName="user_info"
-                             referencedColumnNames="id"/>
-            </column>
-            <column name="external_id" type="VARCHAR(2048)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="status" type="VARCHAR(64)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
     <changeSet id="add_test_info" author="bursmitrov_d">
         <insert tableName="user_info">
             <column name="phone_number" value="79999999999"/>
@@ -134,6 +107,57 @@
             <column name="private_key" value="843aa1d4913ca19739f39df417e7eed38dbf80537c67d6c745f8b3bc90d2db51"/>
             <column name="user_info_id" value="2"/>
         </insert>
+    </changeSet>
+
+    <changeSet id="create_transaction" author="burmistrov_d">
+        <!-- TRANSACTION -->
+        <createTable tableName="transaction">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="transaction_pkey"/>
+            </column>
+            <column name="user_info_id_from" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="transaction_user_info_id_from_fkey"
+                             referencedTableName="user_info"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="user_info_id_to" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="transaction_user_info_id_to_fkey"
+                             referencedTableName="user_info"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="external_id" type="VARCHAR(2048)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="VARCHAR(2048)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="nft" author="burmistrov_d">
+        <!-- NFT -->
+        <createTable tableName="nft">
+            <column name="uri" type="VARCHAR(350)">
+                <constraints primaryKey="true" primaryKeyName="nft_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(350)">
+                <constraints nullable="false" />
+            </column>
+            <column name="matic_price" type="numeric">
+                <constraints nullable="false" />
+            </column>
+            <column name="image_url" type="VARCHAR(2048)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
     </changeSet>
 
 </databaseChangeLog>
