@@ -55,7 +55,7 @@ public class NftServiceImpl implements NftService {
             if (nft.getRublePrice() == null) {
                 throw new DomainException("Невозможно купить за рубли");
             }
-            if (BigDecimal.valueOf(nft.getRublePrice()).compareTo(balance.getCoinsAmount()) < 0) {
+            if (BigDecimal.valueOf(nft.getRublePrice()).compareTo(balance.getCoinsAmount()) > 0) {
                 throw new DomainException("Недостаточно средств");
             }
         }

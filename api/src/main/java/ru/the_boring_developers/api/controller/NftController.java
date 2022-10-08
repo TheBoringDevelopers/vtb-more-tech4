@@ -34,7 +34,7 @@ public class NftController {
     }
 
     @PostMapping("/buy")
-    public ResponseEntity<TransferResponse> buy(NftBuyRequest request) {
+    public ResponseEntity<TransferResponse> buy(@RequestBody NftBuyRequest request) {
         return ok(nftService.buy(request));
     }
 }
